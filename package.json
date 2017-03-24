@@ -4,6 +4,8 @@
   "description": "Webpack 2, React, Redux, CSS-Next",
   "main": "index.js",
   "scripts": {
+    "dev": "./node_modules/webpack/bin/webpack.js -d --watch",
+    "prod": "./node_modules/webpack/bin/webpack.js -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Cristian87e/front-end-base/issues"
   },
-  "homepage": "https://github.com/Cristian87e/front-end-base#readme"
+  "homepage": "https://github.com/Cristian87e/front-end-base#readme",
+  "dependencies": {
+    "webpack": "^2.3.1"
+  }
 }
