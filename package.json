@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Cristian87e/front-end-base#readme",
   "dependencies": {
+    "html-webpack-plugin": "^2.28.0",
     "webpack": "^2.3.1"
   }
 }
