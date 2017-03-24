@@ -1,0 +1,19 @@
+{
+  "name": "front-end-base",
+  "version": "1.0.0",
+  "description": "Webpack 2, React, Redux, CSS-Next",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cristian87e/front-end-base.git"
+  },
+  "author": "Cristian Perrone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cristian87e/front-end-base/issues"
+  },
+  "homepage": "https://github.com/Cristian87e/front-end-base#readme"
+}
