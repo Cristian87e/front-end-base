@@ -4,10 +4,13 @@ const cssNext = require('postcss-cssnext')
 const { resolve } = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js',
+    faq: './src/faq.js'
+  },
   output: {
     path: resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -58,7 +61,19 @@ module.exports = {
       minify: {
         collapseWhitespace: true
       },
+      excludeChunks: ['faq'],
+      hash: true,
       template: './src/tpl.index.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'FAQ Page',
+      minify: {
+        collapseWhitespace: true
+      },
+      chunks: ['faq'],
+      hash: true,
+      filename: 'faq.html',
+      template: './src/tpl.faq.html'
     }),
     new ExtractTextPlugin({
       filename: 'styles.css'
