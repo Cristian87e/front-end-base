@@ -1,7 +1,55 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
 const cssNext = require('postcss-cssnext')
 const { resolve } = require('path')
+
+const isProduction = process.env.NODE_ENV === 'production'
+const cssDev = [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: function () {
+        return [
+          cssNext({
+            browsers: ['last 2 versions', 'IE > 10'],
+          })
+        ]
+      }
+    }
+  }
+]
+const cssProd = ExtractTextPlugin.extract({
+  fallback: 'style-loader',
+  use: [
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1
+      }
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        plugins: function () {
+          return [
+            cssNext({
+              browsers: ['last 2 versions', 'IE > 10'],
+            })
+          ]
+        }
+      }
+    }
+  ]
+})
+const cssConfig = isProduction ? cssProd : cssDev
 
 module.exports = {
   entry: {
@@ -17,29 +65,7 @@ module.exports = {
       // PostCss Loader
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function () {
-                  return [
-                    cssNext({
-                      browsers: ['last 2 versions', 'IE > 10'],
-                    })
-                  ]
-                }
-              }
-            }
-          ]
-        })
+        use: cssConfig
       },
       // Babel-Loader
       {
@@ -53,7 +79,8 @@ module.exports = {
       contentBase: resolve(__dirname, 'dist'),
       compress: true,
       port: 9000,
-      stats: 'errors-only'
+      stats: 'errors-only',
+      hot: true
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -76,7 +103,12 @@ module.exports = {
       template: './src/tpl.faq.html'
     }),
     new ExtractTextPlugin({
-      filename: 'styles.css'
-    })
+      filename: 'styles.css',
+      disable: !isProduction
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
   ]
 }
