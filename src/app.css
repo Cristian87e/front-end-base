@@ -1,0 +1,9 @@
+:root {
+  --mainColor: gray;
+}
+
+body {
+  & h1 {
+    color: var(--mainColor);
+  }
+}
