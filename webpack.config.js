@@ -11,6 +11,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // PostCss Loader
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -36,6 +37,12 @@ module.exports = {
             }
           ]
         })
+      },
+      // Babel-Loader
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       }
     ]
   },
