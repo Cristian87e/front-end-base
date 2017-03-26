@@ -1,9 +1,9 @@
-:root {
-  --mainColor: red;
-}
+@import "./assets/styles/variables.css";
 
 body {
+
   & h1 {
-    color: var(--mainColor);
+    font-family: --main-font;
+    color: var(--turquoise);
   }
 }

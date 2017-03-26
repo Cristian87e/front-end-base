@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssNext = require('postcss-cssnext');
+const postcssReporter = require('postcss-reporter');
+const postcssImport = require('postcss-import');
+const fontMagician = require('postcss-font-magician');
 const { PATH_DIST, PATH_SRC } = require('./constants');
 
 module.exports = {
@@ -13,6 +16,17 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      modules: 'src/modules',
+      //   npm: 'node_modules',
+      //   fonts: 'src/assets/fonts',
+      //   img: 'src/assets/images',
+      styles: 'src/assets/styles',
+      components: 'src/components',
+      containers: 'src/containers',
+      //   routes: 'src/routes',
+      //   state: 'src/state'
+    },
   },
   module: {
     rules: [
@@ -31,8 +45,24 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: () => ([
+                postcssImport({
+                  addDependencyTo: webpack,
+                }),
+                fontMagician({
+                  variants: {
+                    'Roboto Condensed': {
+                      300: [],
+                      400: [],
+                      700: [],
+                    },
+                  },
+                  foundries: ['google'],
+                }),
                 cssNext({
                   browsers: ['last 2 versions', 'IE > 10'],
+                }),
+                postcssReporter({
+                  clearMessages: true,
                 }),
               ]),
             },
@@ -51,6 +81,10 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        use: 'file-loader',
       },
     ],
   },

@@ -1,0 +1,19 @@
+@import "../../assets/styles/variables.css";
+
+.button {
+
+  border: none;
+  background-color: var(--turquoise);
+  color: var(--inverse);
+  font-size: 1rem;
+  padding: 1em 2em;
+  outline: none;
+
+  &-simple {
+
+
+    &:hover {
+      background-color: color(#5a89b7 w(+ 5%));
+    }
+  }
+}
