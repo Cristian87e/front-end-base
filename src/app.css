@@ -1,9 +1,0 @@
-:root {
-  --mainColor: red;
-}
-
-body {
-  & h1 {
-    color: var(--mainColor);
-  }
-}

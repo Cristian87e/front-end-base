@@ -1,0 +1,39 @@
+.counter {
+  width: 300px;
+  margin: auto;
+
+  & h3 {
+    text-align: center;
+  }
+
+  & .display {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em;
+    border: 1px solid gray;
+    text-align: center;
+    font-size: 2em;
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: space-around;
+
+    & button {
+      outline: none;
+      margin: 1em;
+      padding: 1em 2em;
+      background-color: #07E;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #05C;
+      }
+      &:active {
+        background-color: #07E;
+      }
+    }
+  }
+}

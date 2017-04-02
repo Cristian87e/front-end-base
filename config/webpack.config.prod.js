@@ -5,7 +5,7 @@ const { PATH_DIST, PATH_SRC } = require('./constants');
 
 module.exports = {
   entry: {
-    app: `${PATH_SRC}/app.jsx`,
+    index: `${PATH_SRC}/index.jsx`,
   },
   output: {
     path: PATH_DIST,
