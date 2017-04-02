@@ -1,0 +1,8 @@
+.title {
+  background-color: #EEE;
+  padding: 1em 1em;
+
+  &:before {
+    content: '#';
+  }
+}
