@@ -1,7 +1,10 @@
 {
   "extends": "airbnb",
   "rules": {
-    "func-names": ["error", "never"]
+    "func-names": ["error", "never"],
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0
   },
   "env": {
     "browser": true,

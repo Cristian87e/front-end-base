@@ -2,7 +2,13 @@
   background-color: #EEE;
   padding: 1em 1em;
 
-  &:before {
-    content: '#';
+  & img {
+    padding-right: 0.5em;
+    width: 2em;
+    vertical-align: middle;
+  }
+
+  & span {
+    vertical-align: middle;
   }
 }

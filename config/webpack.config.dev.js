@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssNext = require('postcss-cssnext');
-const { PATH_DIST, PATH_SRC } = require('./constants');
+const { PATH_DIST, PATH_SRC, NODE_MODULES } = require('./constants');
 
 module.exports = {
   entry: {
@@ -13,6 +13,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [NODE_MODULES, PATH_SRC],
   },
   module: {
     rules: [
@@ -38,6 +39,13 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(svg|jpe?g|png)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'file-loader',
+        },
       },
       // Babel-Loader
       {
