@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const cssNext = require('postcss-cssnext');
 const { PATH_DIST, PATH_SRC, NODE_MODULES } = require('./constants');
 
 module.exports = {
@@ -30,13 +29,6 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins: () => ([
-                cssNext({
-                  browsers: ['last 2 versions', 'IE > 10'],
-                }),
-              ]),
-            },
           },
         ],
       },
