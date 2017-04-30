@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const cssNext = require('postcss-cssnext');
-const { PATH_DIST, PATH_SRC } = require('./constants');
+const { PATH_DIST, PATH_SRC, NODE_MODULES } = require('./constants');
 
 module.exports = {
   entry: {
@@ -13,6 +12,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [NODE_MODULES, PATH_SRC],
   },
   module: {
     rules: [
@@ -30,16 +30,16 @@ module.exports = {
             },
             {
               loader: 'postcss-loader',
-              options: {
-                plugins: () => ([
-                  cssNext({
-                    browsers: ['last 2 versions', 'IE > 10'],
-                  }),
-                ]),
-              },
             },
           ],
         }),
+      },
+      {
+        test: /\.(svg|jpe?g|png)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'file-loader',
+        },
       },
       // Babel-Loader
       {

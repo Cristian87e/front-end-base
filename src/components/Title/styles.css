@@ -1,5 +1,7 @@
+@import "colors";
+
 .title {
-  background-color: #EEE;
+  background-color: var(--clouds);
   padding: 1em 1em;
 
   & img {
