@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "func-names": ["error", "never"],
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true,
+    "es6": true,
+    "classes": true
+  }
+}
